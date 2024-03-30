@@ -51,8 +51,14 @@ function saveContactsToLocalStorage(contacts) {
 }
 
 window.addEventListener("load", () => {
-  if (!localStorage.getItem("contacts")) {
-    contacts = [
+  const loadedContacts = loadContactsFromLocalStorage();
+
+  if (
+    !loadedContacts ||
+    !localStorage.getItem("contacts") ||
+    loadedContacts.length < 1
+  ) {
+    initialContacts = [
       {
         id: 1,
         fullName: "Nanda Apriliawan",
@@ -72,7 +78,7 @@ window.addEventListener("load", () => {
         email: "karl_marx@yahoo.com",
       },
     ];
-    saveContactsToLocalStorage();
+    saveContactsToLocalStorage(initialContacts);
   }
 
   renderContacts(); // Render after loading data
@@ -84,11 +90,10 @@ function addContact(event) {
 
   const contactFormData = new FormData(addContactFormElement);
   const newContact = {
-    id: contacts[contacts.length - 1].id + 1,
+    id: loadedContacts[loadedContacts.length - 1].id + 1,
     fullName: contactFormData.get("fullName"),
     email: contactFormData.get("email"),
     phone: contactFormData.get("phone"),
-    age: Number(contactFormData.get("age")),
   };
 
   loadedContacts.push(newContact);
