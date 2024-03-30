@@ -37,6 +37,7 @@ function renderContacts() {
     <p>${contact.phone}</p>
     <div>
       <button onclick="deleteContactById(${contact.id})">Delete</button>
+      <button onclick="updateContactById(${contact.id})">Update</button>
     </div>
   </li>
   `
@@ -107,7 +108,24 @@ function deleteContactById(id) {
 }
 
 function updateContactById(id) {
-  // update
+  const loadedContacts = loadContactsFromLocalStorage();
+
+  const updatedContacts = loadedContacts.map((contact) => {
+    if (contact.id === Number(id)) {
+      const updatedContact = {
+        ...contact,
+        fullName: addContactFormElement.fullName.value,
+        email: addContactFormElement.email.value,
+        phone: addContactFormElement.phone.value,
+      };
+      return updatedContact;
+    } else {
+      return contact;
+    }
+  });
+
+  saveContactsToLocalStorage(updatedContacts);
+  renderContacts();
 }
 
 window.addEventListener("load", renderContacts);
