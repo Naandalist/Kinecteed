@@ -80,7 +80,7 @@ window.addEventListener("load", () => {
 
 function addContact(event) {
   event.preventDefault();
-  const contacts = loadContactsFromLocalStorage();
+  const loadedContacts = loadContactsFromLocalStorage();
 
   const contactFormData = new FormData(addContactFormElement);
   const newContact = {
@@ -91,9 +91,8 @@ function addContact(event) {
     age: Number(contactFormData.get("age")),
   };
 
-  console.log("contacts: ", contacts);
-  contacts.push(newContact);
-  saveContactsToLocalStorage(contacts);
+  loadedContacts.push(newContact);
+  saveContactsToLocalStorage(loadedContacts);
   renderContacts();
 }
 
