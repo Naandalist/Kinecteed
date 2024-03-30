@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Address Book</title>
+  </head>
+  <body>
+    <h1>Address Book</h1>
+
+    <form id="search-contacts" method="get">
+      <input
+        id="search-input"
+        type="text"
+        name="q"
+        placeholder="Enter keyword..."
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    <hr />
+
+    <form id="add-contact-form" method="post">
+      <div>
+        <label for="full-name">Full name:</label>
+        <input
+          id="full-name"
+          name="fullName"
+          type="text"
+          placeholder="full name"
+        />
+      </div>
+      <div>
+        <label for="email">Email address:</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="email"
+        />
+      </div>
+      <div>
+        <label for="phone">Phone number:</label>
+        <input
+          id="phone"
+          name="phone"
+          type="phone"
+          placeholder="phone number"
+        />
+      </div>
+      <button type="submit">Add Contact</button>
+    </form>
+
+    <ul id="contacts-container">
+      <!-- Contacts Data -->
+    </ul>
+
+    <script src="index.js"></script>
+  </body>
+</html>
