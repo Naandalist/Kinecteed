@@ -57,8 +57,8 @@ function renderContacts() {
     console.log("storedData: ", storedContacts);
 
     createTableRows(storedContacts);
-    createButtonMenuSidebar();
   }
+  createButtonMenuSidebar();
 }
 
 function handleSearch(event) {
