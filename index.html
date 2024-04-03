@@ -1,60 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Address Book</title>
-  </head>
-  <body>
-    <h1>Address Book</h1>
 
-    <form id="search-contacts" method="get">
-      <input
-        id="search-input"
-        type="text"
-        name="q"
-        placeholder="Enter keyword..."
-      />
-      <button type="submit">Search</button>
-    </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+  <link rel="icon" type="image/svg" href="./assets/img/logo-kinected.svg" />
+  <title>
+    Kinected - Evokes a sense of responsibility for contact info to your kin.
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../assets/css/argon-dashboard-tailwind.css?v=1.0.1" rel="stylesheet" />
+</head>
 
-    <hr />
+<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+  <div class="absolute w-full bg-blue-500 min-h-75"></div>
+  <aside
+    class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl xl:ml-6 max-w-64 ease-nav-brand z-990 rounded-2xl xl:left-0 xl:translate-x-0"
+    aria-expanded="false">
+    <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
+      sidenav-close></i>
+    <div class="mx-4 my-6 mt-4">
+      <a class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px"
+        href="/pages/create.html">Add New Contact</a>
+    </div>
+    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+    <div class="items-center block w-auto max-h-screen h-sidenav grow basis-full">
+      <ul class="flex flex-col pl-0 mb-0">
+      </ul>
+    </div>
+  </aside>
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+    <!-- Navbar -->
+    <nav
+      class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
+      navbar-main navbar-scroll="false">
+      <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+        <nav class="mt-4">
+          <div class="flex items-center pr-4 xl:hidden">
+            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" sidenav-trigger>
+              <div class="w-4.5 overflow-hidden">
+                <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                <i class="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
+              </div>
+            </a>
+          </div>
+          <div>
 
-    <form id="add-contact-form" method="post">
-      <div>
-        <label for="full-name">Full name:</label>
-        <input
-          id="full-name"
-          name="fullName"
-          type="text"
-          placeholder="full name"
-        />
+            <h6 class="mb-0 font-bold text-white capitalize">
+              <span class="opacity-50">Be Always </span>Kinected 😊
+            </h6>
+            <p class="text-white opacity-50 text-sm">
+              Evokes a sense of responsibility for contact info to your kin.
+            </p>
+          </div>
+        </nav>
+
+        <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+          <form id="search-contacts" method="get"></form>
+          <div class="flex items-center md:ml-auto md:pr-4">
+            <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+              <span
+                class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+                <i class="fas fa-search"></i>
+              </span>
+              <input type="text" id="search-input" name="q"
+                class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                placeholder="Type here..." />
+            </div>
+          </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <label for="email">Email address:</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="email"
-        />
-      </div>
-      <div>
-        <label for="phone">Phone number:</label>
-        <input
-          id="phone"
-          name="phone"
-          type="phone"
-          placeholder="phone number"
-        />
-      </div>
-      <button type="submit">Add Contact</button>
-    </form>
+    </nav>
+    <div class="w-full px-6 py-6 mx-auto">
+      <!-- table contact -->
+      <div class="flex flex-wrap -mx-3">
+        <div class="flex-none w-full max-w-full px-3">
+          <div id="contact-table"
+            class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
+            <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+              <h6 class="text-gray-800">All Contact</h6>
+            </div>
+            <div id="contact-table" class="flex-auto px-0 pt-0 pb-2">
+              <div class="p-0 overflow-x-auto">
+                <table class="items-center w-full mb-0 align-top border-collapse text-slate-500">
+                  <thead class="align-bottom">
+                    <tr>
+                      <th
+                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Name
+                      </th>
+                      <th
+                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Phone Number
+                      </th>
+                      <th
+                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Email
+                      </th>
+                      <th
+                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Tag
+                      </th>
 
-    <ul id="contacts-container">
-      <!-- Contacts Data -->
-    </ul>
+                      <th
+                        class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-    <script src="index.js"></script>
-  </body>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="w-full max-w-full px-3 mb-6 sm:flex-none xl:mb-0">
+        <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
+          <div class="flex-auto p-4">
+            <div class="flex flex-row -mx-3">
+              <div class="flex-none w-2/3 max-w-full px-3">
+                <div>
+                  <h5 class="mt-4 font-bold">💣🧨 Boom shakalak! No data available.</h5>
+                  <p class="mb-0">
+                    <span class="text-sm font-bold leading-normal text-emerald-500"></span>
+                    No worry, you can add new data anytime!
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+</body>
+<!-- plugin for scrollbar  -->
+<script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
+<!-- main script file  -->
+<script src="../assets/js/argon-dashboard-tailwind.js?v=1.0.1" async></script>
+<!-- sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" async></script>
+<!-- customize-->
+<script src="./index.js" async></script>
+
 </html>
