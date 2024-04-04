@@ -73,9 +73,17 @@ function renderContacts() {
 
     console.log("storedData: ", storedContacts);
 
-    createTableRows(storedContacts);
+    createTableRows(storedContacts.reverse());
   }
-  createButtonMenuSidebar();
+
+  const tagHeading = document.querySelector(
+    "h6.pl-6.ml-2.text-xs.font-bold.leading-tight.uppercase.opacity-60"
+  );
+  
+  // avoid double render button sidebar
+  if (!tagHeading) {
+    createButtonMenuSidebar();
+  }
 }
 
 function handleSearch(event) {
