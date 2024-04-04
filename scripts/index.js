@@ -127,10 +127,10 @@ function deleteContactById(id) {
     storedContacts.splice(indexToRemove, 1);
   }
 
-  showAlert("warning", "Are you sure want to delete this?");
+  showAlert("warning", "Are you sure want to delete this?", storedContacts);
 }
 
-function showAlert(type, message) {
+function showAlert(type, message, storedContacts) {
   Swal.fire({
     title: "",
     text: message,
