@@ -27,6 +27,23 @@ function renderContacts() {
 
   let storedContacts = loadContactsFromLocalStorage();
 
+  const autoAddData = params.get("autoAddData");
+
+  if (autoAddData === "on" && storedContacts.length < 15) {
+    console.log("tinggalSet: ", mockDataContact);
+
+    console.log("storedData: ", storedContacts);
+
+    const dataWillSave = [...storedContacts, ...mockDataContact];
+
+    console.log("dataWillSave: ", dataWillSave);
+    localStorage.setItem(
+      "contacts",
+      JSON.stringify([...storedContacts, ...mockDataContact])
+    );
+    window.location.href = "/";
+  }
+
   if (keyword) {
     searchInputElement.value = keyword;
 
@@ -125,16 +142,16 @@ function deleteContactById(id) {
   });
 }
 
-function tagColor(tag) {
-  if (tag === "family") return "from-blue-700 to-cyan-500";
-  if (tag === "community") return "from-emerald-500 to-teal-400";
-  if (tag === "work") return "from-orange-500 to-yellow-500";
-  return "from-red-600 to-orange-600";
-}
-
 function createTableRows(data) {
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ""; // This removes all child elements from the tableBody
+
+  function tagColor(tag) {
+    if (tag === "family") return "from-blue-700 to-cyan-500";
+    if (tag === "community") return "from-emerald-500 to-teal-400";
+    if (tag === "work") return "from-orange-500 to-yellow-500";
+    return "from-red-600 to-orange-600";
+  }
 
   data.map((item) => {
     const tableRow = document.createElement("tr");
