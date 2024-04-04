@@ -27,16 +27,27 @@ function renderContacts() {
 
   let storedContacts = loadContactsFromLocalStorage();
 
+  const filterBy = params.get("filterBy");
+
+  if (filterBy === "work") {
+    storedContacts = storedContacts.filter((item) => item.tag === "work");
+
+    console.log("storedContact: ", storedContacts)
+  }
+  if (filterBy === "family") {
+    storedContacts = storedContacts.filter((item) => item.tag === "family");
+  }
+  if (filterBy === "community") {
+    storedContacts = storedContacts.filter((item) => item.tag === "community");
+  }
+  if (filterBy === "favourites") {
+    storedContacts = storedContacts.filter((item) => item.isFavourite === true);
+  }
+
+  // its magic, auto add data 😎
   const autoAddData = params.get("autoAddData");
 
   if (autoAddData === "on" && storedContacts.length < 15) {
-    console.log("tinggalSet: ", mockDataContact);
-
-    console.log("storedData: ", storedContacts);
-
-    const dataWillSave = [...storedContacts, ...mockDataContact];
-
-    console.log("dataWillSave: ", dataWillSave);
     localStorage.setItem(
       "contacts",
       JSON.stringify([...storedContacts, ...mockDataContact])
@@ -54,24 +65,14 @@ function renderContacts() {
     storedContacts = filteredContacts;
   }
 
-  console.log("length: ", storedContacts?.length);
-
-  console.log("noDataMessageNotHidden: ", noDataMessageNotHidden);
-  console.log(storedContacts?.length < 1 || !storedContacts);
-
+  // handling data empty
   if (storedContacts?.length < 1 || !storedContacts) {
-    console.log("Data hidden aja");
     tableData.classList.add("hidden");
-
-    console.log("noDataMessageHidden: ", noDataMessageHidden);
 
     if (noDataMessageHidden) noDataMessageHidden.classList.remove("hidden");
   } else {
-    console.log("Tabel data muncul aja");
     tableData.classList.remove("hidden");
     if (noDataMessageNotHidden) noDataMessageNotHidden.classList.add("hidden"); // Make it hidden
-
-    console.log("storedData: ", storedContacts);
 
     createTableRows(storedContacts.reverse());
   }
@@ -79,7 +80,7 @@ function renderContacts() {
   const tagHeading = document.querySelector(
     "h6.pl-6.ml-2.text-xs.font-bold.leading-tight.uppercase.opacity-60"
   );
-  
+
   // avoid double render button sidebar
   if (!tagHeading) {
     createButtonMenuSidebar();
