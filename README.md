@@ -3,16 +3,14 @@
  Kinecteed is a lightweight web app developed using vanilla JavaScript and Argon Tailwind CSS. This aims to create a user-friendly and organized platform where we can store and access contact info.
 
 ## Features
+
+- [x] ***Contact Details:*** Clicking on a contact should open a page displaying details info.
+- [x] ***Add New Contact:*** Provide a form or interface to add new contacts.
+- [x] ***Edit Contact:*** Allow users to edit existing contact information.
+- [x] ***Search Functionality:*** Implement a search bar to quickly find contacts by name.
+- [x] ***Categories or Groups:*** User can categorize contacts into tags.
+- [x] ***Responsive Design:*** App is accessible and usable on various devices.
 - [ ] Any requests ?
-
-
-- [x] ***Contact Details:*** Clicking on a contact should open a page displaying detailed information, including phone numbers, email addresses, and any additional notes.
-
-- [x] Add New Contact: Provide a form or interface to add new contacts with fields for name, phone number, email, address, and notes.
-
-- [x] Edit Contact: Allow users to edit existing contact information.
-- [x] Search Functionality: Implement a search bar to quickly find contacts by name or other relevant details.
-
 
 
 ## Usage
