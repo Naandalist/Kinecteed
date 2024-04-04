@@ -61,6 +61,7 @@ function addContact(event) {
   const phoneNumber = addContactFormElement.phoneNumber.value;
   const emailAddress = addContactFormElement.emailAddress.value;
   const tag = checkedValue()[0];
+  const isFavourite = false;
 
   const contactData = {
     id,
@@ -69,6 +70,7 @@ function addContact(event) {
     phoneNumber,
     emailAddress,
     tag,
+    isFavourite
   };
 
   console.log("TAG: ", tag);
@@ -112,6 +114,9 @@ function addContact(event) {
   });
 
   showToast(toastColors.success, "New data has created successfully");
+  setTimeout(() => {
+    window.location.href = "/";
+  }, 4000);
 }
 
 function handleCheckbox(event) {
@@ -125,6 +130,8 @@ function handleCheckbox(event) {
   const allCheckboxes = checkboxContainer.querySelectorAll(
     'input[type="checkbox"]'
   );
+
+  console.log("allCheckboxes: ", allCheckboxes);
   allCheckboxes.forEach((checkbox) => {
     if (checkbox !== clickedCheckbox) {
       checkbox.checked = false;
