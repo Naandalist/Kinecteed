@@ -1,5 +1,9 @@
 const updateContactFormElement = document.getElementById("update-data-form");
 const goBackLink = document.getElementById("goBackLink");
+const tagCheckboxContainer = document.getElementById("tag-checkbox-container");
+const checkboxContainer = document.querySelector(
+  ".min-h-6.pl-7.flex.justify-between"
+);
 
 const toastColors = {
   primary: "#007bff",
@@ -9,9 +13,9 @@ const toastColors = {
   warning: "#ffc107", // Yellow
 };
 
-function showToast(color) {
+function showToast(color, message) {
   Toastify({
-    text: `There is no data change`,
+    text: message || `Sometthing went wrong!`,
     duration: 3000,
     newWindow: true,
     close: true,
@@ -38,31 +42,6 @@ function saveContactsToLocalStorage(contacts) {
   localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
-function addContact(event) {
-  event.preventDefault();
-  const loadedContacts = loadContactsFromLocalStorage();
-
-  console.log("data: ", loadedContacts);
-
-  const id = loadedContacts[loadedContacts.length - 1].id + 1;
-  const fullName = addContactFormElement.fullName.value;
-  const label = addContactFormElement.label.value;
-  const phoneNumber = addContactFormElement.phoneNumber.value;
-  const emailAddress = addContactFormElement.emailAddress.value;
-  const tag = addContactFormElement.tag.value;
-
-  const newContactData = {
-    id,
-    fullName,
-    label,
-    phoneNumber,
-    emailAddress,
-    tag,
-  };
-
-  saveContactsToLocalStorage([...loadedContacts, newContactData]);
-}
-
 function filterContactsById(contacts, id) {
   return contacts.filter((contact) => contact.id === Number(id))[0];
 }
@@ -74,19 +53,22 @@ function updateContact(event) {
 
   const loadedContacts = loadContactsFromLocalStorage();
 
-  //   const selectedContact = filterContactsById(loadedContacts, id);
+  function checkedValue() {
+    const checkboxes = document.getElementsByName("tag");
+    return Array.from(checkboxes)
+      .filter((checkbox) => checkbox.checked)
+      .map((checkbox) => checkbox.value);
+  }
 
-  //   console.log(loadedContacts);
-  //   console.log(id);
-
-  //   console.log("selectedContact: ", selectedContact);
-
+  const tag = checkedValue()[0];
   const id = parseInt(urlParams.get("id"));
   const fullName = updateContactFormElement.fullName.value;
   const label = updateContactFormElement.label.value;
   const phoneNumber = updateContactFormElement.phoneNumber.value;
   const emailAddress = updateContactFormElement.emailAddress.value;
-  const tag = updateContactFormElement.tag.value;
+  const isFavourite = document.getElementById("favourite").checked;
+
+  console.log("FAV: ");
 
   const newContactData = {
     id,
@@ -95,6 +77,7 @@ function updateContact(event) {
     phoneNumber,
     emailAddress,
     tag,
+    isFavourite,
   };
 
   const targetIndex = loadedContacts.findIndex(
@@ -102,26 +85,25 @@ function updateContact(event) {
   );
 
   if (targetIndex !== -1) {
-    // Replace the element at the target index with newData
-
-    console.log("Updated data:", loadedContacts);
-
-    console.log("newContactData.fullNam: ", newContactData.fullName);
-    console.log("loadedContacts[targetIndex].fullName: ", newContactData.fullName);
-
-    if (loadedContacts[targetIndex].fullName === newContactData.fullName) {
-      loadedContacts[targetIndex] = newContactData;
-      showToast(toastColors.alert);
+    if (
+      JSON.stringify(loadedContacts[targetIndex]) ===
+      JSON.stringify(newContactData)
+    ) {
+      // loadedContacts[targetIndex] = newContactData;
+      console.log("data ga berubah");
+      showToast(toastColors.alert, "There is no updated");
     } else {
+
+      // replace by new updated data 
+      loadedContacts[targetIndex] = newContactData;
+
       saveContactsToLocalStorage(loadedContacts);
 
-      showToast(toastColors.success);
+      showToast(toastColors.success, "Data updated successfully");
     }
   } else {
     console.error("ID", newContactData.id, "not found in the data");
   }
-
-  // saveContactsToLocalStorage([...loadedContacts, newContactData]);
 }
 
 function renderFillInput() {
@@ -143,14 +125,60 @@ function renderFillInput() {
   const labelInput = document.getElementById("label");
   const phoneNumberInput = document.getElementById("phoneNumber");
   const emailAddressInput = document.getElementById("emailAddress");
-  const tagInput = document.getElementById("tag");
+
+  //handling switch favorite
+  const switchFavouriteInput = document.getElementById("favourite");
+
+  console.log("selectedContact.isFavourite: ", selectedContact.isFavourite);
+
+  if (selectedContact.isFavourite) {
+    switchFavouriteInput.checked = true;
+  }
+
+  //handling checked status for tag input
+  const tagCommunityInput = document.getElementById("tag-community");
+  const tagWorkInput = document.getElementById("tag-work");
+  const tagFamilyInput = document.getElementById("tag-family");
+
+  if (selectedContact.tag === "community") {
+    tagCommunityInput.checked = true;
+  }
+
+  if (selectedContact.tag === "work") {
+    tagWorkInput.checked = true;
+  }
+
+  if (selectedContact.tag === "family") {
+    tagFamilyInput.checked = true;
+  }
 
   // Set input values
   fullNameInput.value = selectedContact.fullName;
   labelInput.value = selectedContact.label;
-  phoneNumberInput.value = Number(selectedContact.phoneNumber);
+  phoneNumberInput.value = selectedContact.phoneNumber;
   emailAddressInput.value = selectedContact.emailAddress;
-  tagInput.value = selectedContact.tag;
+
+  //set active tag checkbox
+  // renderTagCheckbox(selectedContact.tag);
+}
+
+function handleCheckbox(event) {
+  const clickedCheckbox = event.target;
+  if (
+    clickedCheckbox.tagName !== "INPUT" ||
+    !clickedCheckbox.type === "checkbox"
+  )
+    return;
+
+  const allCheckboxes = checkboxContainer.querySelectorAll(
+    'input[type="checkbox"]'
+  );
+
+  allCheckboxes.forEach((checkbox) => {
+    if (checkbox !== clickedCheckbox) {
+      checkbox.checked = false;
+    }
+  });
 }
 
 function goBack() {
@@ -160,3 +188,4 @@ function goBack() {
 goBackLink.addEventListener("click", goBack);
 window.addEventListener("load", renderFillInput);
 updateContactFormElement.addEventListener("submit", updateContact);
+checkboxContainer.addEventListener("click", handleCheckbox);
