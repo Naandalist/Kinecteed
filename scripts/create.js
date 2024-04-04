@@ -8,7 +8,7 @@ const toastColors = {
   primary: "#007bff",
   secondary: "#6c757d",
   success: "linear-gradient(to right, #00b09b, #96c93d)",
-  alert: "#dc3545", // Red
+  alert: "#dc3545",
   warning: "linear-gradient(to right, #d35400, #f39c12)",
 };
 
@@ -51,8 +51,6 @@ function addContact(event) {
   event.preventDefault();
   const loadedContacts = loadContactsFromLocalStorage();
 
-  console.log("data: ", loadedContacts);
-
   const id = loadedContacts[loadedContacts.length - 1]?.id
     ? loadedContacts[loadedContacts.length - 1]?.id + 1
     : 0 + 1;
@@ -70,10 +68,9 @@ function addContact(event) {
     phoneNumber,
     emailAddress,
     tag,
-    isFavourite
+    isFavourite,
   };
 
-  console.log("TAG: ", tag);
   if (!tag) {
     showToast(toastColors.warning, `Tag is required!`);
     return;
@@ -131,7 +128,6 @@ function handleCheckbox(event) {
     'input[type="checkbox"]'
   );
 
-  console.log("allCheckboxes: ", allCheckboxes);
   allCheckboxes.forEach((checkbox) => {
     if (checkbox !== clickedCheckbox) {
       checkbox.checked = false;
@@ -144,7 +140,5 @@ function goBack() {
 }
 
 addContactFormElement.addEventListener("submit", addContact);
-
 goBackLink.addEventListener("click", goBack);
-
 checkboxContainer.addEventListener("click", handleCheckbox);

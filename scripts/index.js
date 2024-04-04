@@ -29,19 +29,15 @@ function renderContacts() {
 
   const filterBy = params.get("filterBy");
 
-  if (filterBy === "work") {
-    storedContacts = storedContacts.filter((item) => item.tag === "work");
+  const filterConditions = {
+    work: (item) => item.tag === "work",
+    family: (item) => item.tag === "family",
+    community: (item) => item.tag === "community",
+    favourites: (item) => item.isFavourite === true,
+  };
 
-    console.log("storedContact: ", storedContacts)
-  }
-  if (filterBy === "family") {
-    storedContacts = storedContacts.filter((item) => item.tag === "family");
-  }
-  if (filterBy === "community") {
-    storedContacts = storedContacts.filter((item) => item.tag === "community");
-  }
-  if (filterBy === "favourites") {
-    storedContacts = storedContacts.filter((item) => item.isFavourite === true);
+  if (filterConditions[filterBy]) {
+    storedContacts = storedContacts.filter(filterConditions[filterBy]);
   }
 
   // its magic, auto add data 😎
@@ -92,16 +88,13 @@ function handleSearch(event) {
   const searchTerm = searchInput.value.trim();
 
   if (event.key === "Enter") {
-    // return searchInput.value.trim();
-    console.log("searchTerm: ", searchTerm);
-
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("q", searchTerm);
+
     const newUrl = `${window.location.origin}${
       window.location.pathname
     }?${urlParams.toString()}`;
 
-    console.log("new url: ", newUrl);
     window.location.href = newUrl;
   }
 }
@@ -124,8 +117,6 @@ window.addEventListener("load", () => {
 });
 
 function deleteContactById(id) {
-  console.log("ID: ", id);
-
   let storedContacts = loadContactsFromLocalStorage();
 
   const indexToRemove = storedContacts.findIndex(
@@ -136,10 +127,14 @@ function deleteContactById(id) {
     storedContacts.splice(indexToRemove, 1);
   }
 
+  showAlert("warning", "Are you sure want to delete this?");
+}
+
+function showAlert(type, message) {
   Swal.fire({
     title: "",
-    text: "Are you sure want to delete this?",
-    icon: "warning",
+    text: message,
+    icon: type,
     showCancelButton: true,
     confirmButtonText: "Yes",
   }).then((result) => {
@@ -153,14 +148,13 @@ function deleteContactById(id) {
 
 function createTableRows(data) {
   const tableBody = document.querySelector("tbody");
-  tableBody.innerHTML = ""; // This removes all child elements from the tableBody
+  tableBody.innerHTML = ""; // This removes all child elements from table
 
-  function tagColor(tag) {
-    if (tag === "family") return "from-blue-700 to-cyan-500";
-    if (tag === "community") return "from-emerald-500 to-teal-400";
-    if (tag === "work") return "from-orange-500 to-yellow-500";
-    return "from-red-600 to-orange-600";
-  }
+  const colorMap = {
+    family: "from-blue-700 to-cyan-500",
+    community: "from-emerald-500 to-teal-400",
+    work: "from-orange-500 to-yellow-500",
+  };
 
   data.map((item) => {
     const tableRow = document.createElement("tr");
@@ -243,9 +237,7 @@ function createTableRows(data) {
       "whitespace-nowrap",
       "shadow-transparent"
     );
-    tagCell.innerHTML = `<span class="py-1.4 px-2.5 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl ${tagColor(
-      item.tag
-    )} align-baseline font-bold uppercase leading-none text-white">${
+    tagCell.innerHTML = `<span class="py-1.4 px-2.5 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl ${colorMap[item.tag]} align-baseline font-bold uppercase leading-none text-white">${
       item.tag
     }</span>`;
 
@@ -301,8 +293,6 @@ function createTableRows(data) {
 function createButtonMenuSidebar() {
   const urlParams = new URLSearchParams(window.location.search);
   const selectedCategory = urlParams.get("filterBy");
-
-  console.log("selectedCategory: ", selectedCategory);
 
   const isButtonMenuActive = (category) => {
     if (category === "allContact" && !selectedCategory) return "bg-blue-500/13";

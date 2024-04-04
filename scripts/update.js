@@ -9,8 +9,8 @@ const toastColors = {
   primary: "#007bff",
   secondary: "#6c757d",
   success: "linear-gradient(to right, #00b09b, #96c93d)",
-  alert: "#dc3545", // Red
-  warning: "#ffc107", // Yellow
+  alert: "#dc3545",
+  warning: "#ffc107",
 };
 
 function showToast(color, message) {
@@ -25,7 +25,6 @@ function showToast(color, message) {
     style: {
       background: color,
     },
-    onClick: function () {}, // Callback after click
   }).showToast();
 }
 
@@ -68,8 +67,6 @@ function updateContact(event) {
   const emailAddress = updateContactFormElement.emailAddress.value;
   const isFavourite = document.getElementById("favourite").checked;
 
-  console.log("FAV: ");
-
   const newContactData = {
     id,
     fullName,
@@ -85,18 +82,15 @@ function updateContact(event) {
   );
 
   if (targetIndex !== -1) {
-    if (
+    const contactExists =
       JSON.stringify(loadedContacts[targetIndex]) ===
-      JSON.stringify(newContactData)
-    ) {
-      // loadedContacts[targetIndex] = newContactData;
-      console.log("data ga berubah");
+      JSON.stringify(newContactData);
+
+    if (contactExists) {
       showToast(toastColors.alert, "There is no updated");
     } else {
-
-      // replace by new updated data 
+      // Replace with the new updated data
       loadedContacts[targetIndex] = newContactData;
-
       saveContactsToLocalStorage(loadedContacts);
 
       showToast(toastColors.success, "Data updated successfully");
@@ -112,13 +106,7 @@ function renderFillInput() {
 
   const loadedContacts = loadContactsFromLocalStorage();
 
-  console.log("loadedContacts: ", loadedContacts);
-
-  console.log("id: ", id);
-
   const selectedContact = filterContactsById(loadedContacts, id);
-
-  console.log("selectedContact: ", selectedContact);
 
   // Access form elements
   const fullNameInput = document.getElementById("fullName");
@@ -128,12 +116,7 @@ function renderFillInput() {
 
   //handling switch favorite
   const switchFavouriteInput = document.getElementById("favourite");
-
-  console.log("selectedContact.isFavourite: ", selectedContact.isFavourite);
-
-  if (selectedContact.isFavourite) {
-    switchFavouriteInput.checked = true;
-  }
+  switchFavouriteInput.checked = selectedContact.isFavourite ? true : false;
 
   //handling checked status for tag input
   const tagCommunityInput = document.getElementById("tag-community");
@@ -157,28 +140,25 @@ function renderFillInput() {
   labelInput.value = selectedContact.label;
   phoneNumberInput.value = selectedContact.phoneNumber;
   emailAddressInput.value = selectedContact.emailAddress;
-
-  //set active tag checkbox
-  // renderTagCheckbox(selectedContact.tag);
 }
 
 function handleCheckbox(event) {
   const clickedCheckbox = event.target;
+
+  // Check if clicked element is input has type checkbox
   if (
-    clickedCheckbox.tagName !== "INPUT" ||
-    !clickedCheckbox.type === "checkbox"
-  )
-    return;
+    clickedCheckbox.tagName === "INPUT" &&
+    clickedCheckbox.type === "checkbox"
+  ) {
+    const allCheckboxes = Array.from(checkboxContainer.querySelectorAll('input[type="checkbox"]'));
 
-  const allCheckboxes = checkboxContainer.querySelectorAll(
-    'input[type="checkbox"]'
-  );
-
-  allCheckboxes.forEach((checkbox) => {
-    if (checkbox !== clickedCheckbox) {
-      checkbox.checked = false;
-    }
-  });
+    // Uncheck all checkbox but the clicked one
+    allCheckboxes.map((checkbox) => {
+      if (checkbox !== clickedCheckbox) {
+        checkbox.checked = false;
+      }
+    });
+  }
 }
 
 function goBack() {
