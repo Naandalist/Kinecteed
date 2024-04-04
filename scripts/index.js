@@ -203,7 +203,7 @@ function createTableRows(data) {
       "whitespace-nowrap",
       "shadow-transparent"
     );
-    const maskedPhone = item.phoneNumber.slice(0, -4) + "****";
+    const maskedPhone = item.phoneNumber.replace(/(\+\d{4}).{2}/, '$1**');
     phoneCell.innerHTML = `<span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">${maskedPhone}</span>`;
     tableRow.appendChild(phoneCell);
 
