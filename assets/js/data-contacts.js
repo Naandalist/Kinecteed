@@ -6,7 +6,7 @@ const mockDataContact=[
         "phoneNumber": "+6285157941771",
         "emailAddress": "listiananda.apriliawan@gmail.com",
         "tag": "community",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@ const mockDataContact=[
         "phoneNumber": "+85457949771",
         "emailAddress": "riananggara12@gmail.com",
         "tag": "community",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@ const mockDataContact=[
         "phoneNumber": "+6285057941771",
         "emailAddress": "shintiawfiska@gmail.com",
         "tag": "work",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@ const mockDataContact=[
         "phoneNumber": "+6289157041771",
         "emailAddress": "ade_rai1990@gmail.com",
         "tag": "community",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 5,
@@ -42,7 +42,7 @@ const mockDataContact=[
         "phoneNumber": "+6280100941771",
         "emailAddress": "depaparam_@gmail.com",
         "tag": "family",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 6,
@@ -51,7 +51,7 @@ const mockDataContact=[
         "phoneNumber": "+6285467377338",
         "emailAddress": "wiji_tukul12@gmail.com",
         "tag": "community",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 7,
@@ -60,7 +60,7 @@ const mockDataContact=[
         "phoneNumber": "+6265436764556",
         "emailAddress": "bella_fatim@gmail.com",
         "tag": "family",
-        "isFavorite": false,
+        "isFavourite": true,
     },
     {
         "id": 8,
@@ -69,7 +69,7 @@ const mockDataContact=[
         "phoneNumber": "+628754909000",
         "emailAddress": "dikta_wicakson@gmail.com",
         "tag": "community",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 9,
@@ -78,7 +78,7 @@ const mockDataContact=[
         "phoneNumber": "+629897645667",
         "emailAddress": "riananggara12@gmail.com",
         "tag": "work",
-        "isFavorite": false,
+        "isFavourite": false,
     },
     {
         "id": 10,
@@ -87,6 +87,6 @@ const mockDataContact=[
         "phoneNumber": "+628764356771",
         "emailAddress": "yudi_meong@gmail.com",
         "tag": "work",
-        "isFavorite": false,
+        "isFavourite": false,
     },
 ]
