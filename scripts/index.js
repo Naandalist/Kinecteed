@@ -130,6 +130,29 @@ function deleteContactById(id) {
   showAlert("warning", "Are you sure want to delete this?", storedContacts);
 }
 
+const toastColors = {
+  primary: "#007bff",
+  secondary: "#6c757d",
+  success: "linear-gradient(to right, #00b09b, #96c93d)",
+  alert: "#dc3545",
+  warning: "linear-gradient(to right, #d35400, #f39c12)",
+};
+
+function showToast(color, text) {
+  Toastify({
+    text: text || `a message`,
+    duration: 3000,
+    newWindow: true,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    style: {
+      background: color,
+    },
+  }).showToast();
+}
+
 function showAlert(type, message, storedContacts) {
   Swal.fire({
     title: "",
@@ -141,7 +164,9 @@ function showAlert(type, message, storedContacts) {
     if (result.isConfirmed) {
       saveContactsToLocalStorage(storedContacts);
       renderContacts();
+      showToast(toastColors.success, "successfully deleted")
       if (storedContacts.length < 1) window.location.href = "/";
+
     }
   });
 }
