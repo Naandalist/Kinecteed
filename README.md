@@ -4,6 +4,7 @@
 
 ## Features
 
+- [x] **Display All Contact:** Retrieve data from local storage and displaying all stored info.
 - [x] **Contact Details:** Clicking on a contact should open a page displaying details info.
 - [x] **Add New Contact:** Provide a form or interface to add new contacts.
 - [x] **Edit Contact:** Allow users to edit existing contact information.
