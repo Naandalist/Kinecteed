@@ -124,10 +124,14 @@ function deleteContactById(id) {
   );
 
   if (indexToRemove !== -1) {
-    storedContacts.splice(indexToRemove, 1);
+    const targetedContact = storedContacts.splice(indexToRemove, 1);
+    showAlert(
+      "warning",
+      "Are you sure want to delete this?",
+      storedContacts,
+      targetedContact[0].fullName
+    );
   }
-
-  showAlert("warning", "Are you sure want to delete this?", storedContacts);
 }
 
 const toastColors = {
@@ -153,7 +157,7 @@ function showToast(color, text) {
   }).showToast();
 }
 
-function showAlert(type, message, storedContacts) {
+function showAlert(type, message, storedContacts, fullName) {
   Swal.fire({
     title: "",
     text: message,
@@ -164,9 +168,11 @@ function showAlert(type, message, storedContacts) {
     if (result.isConfirmed) {
       saveContactsToLocalStorage(storedContacts);
       renderContacts();
-      showToast(toastColors.success, "successfully deleted")
+      showToast(
+        toastColors.success,
+        `${fullName} has been deleted successfully`
+      );
       if (storedContacts.length < 1) window.location.href = "/";
-
     }
   });
 }
@@ -228,7 +234,7 @@ function createTableRows(data) {
       "whitespace-nowrap",
       "shadow-transparent"
     );
-    const maskedPhone = item.phoneNumber.replace(/(\+\d{4}).{2}/, '$1**');
+    const maskedPhone = item.phoneNumber.replace(/(\+\d{4}).{2}/, "$1**");
     phoneCell.innerHTML = `<span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">${maskedPhone}</span>`;
     tableRow.appendChild(phoneCell);
 
@@ -262,7 +268,9 @@ function createTableRows(data) {
       "whitespace-nowrap",
       "shadow-transparent"
     );
-    tagCell.innerHTML = `<span class="py-1.4 px-2.5 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl ${colorMap[item.tag]} align-baseline font-bold uppercase leading-none text-white">${
+    tagCell.innerHTML = `<span class="py-1.4 px-2.5 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl ${
+      colorMap[item.tag]
+    } align-baseline font-bold uppercase leading-none text-white">${
       item.tag
     }</span>`;
 
