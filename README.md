@@ -1,6 +1,6 @@
 # Kinecteed
 
- Kinecteed is a lightweight web app developed using vanilla JavaScript and Argon Tailwind CSS. This aims to create a user-friendly and organized platform where we can store and access contact info.
+Kinecteed is a lightweight web app developed using vanilla JavaScript and Argon Tailwind CSS. This aims to create a user-friendly and organized platform where we can store and access contact info.
 
 ## Features
 
@@ -13,16 +13,18 @@
 - [x] **Responsive Design:** App is accessible and usable on various devices.
 - [ ] Any requests?
 
-
 ## Usage
+
 Add new contacts by clicking on the "Add Contact" button.
 Edit or delete existing contacts as needed.
 Use tags to categorize your contacts and organize them effectively.
 
-**Note:** You can visit the URL with the parameter [/?autoAddData=on ](https://kinecteed.naandalist.com/?autoAddData=on)  activated to automatically generate some data.
+**Note:** You can visit the URL with the parameter [/?seed=true ](https://kinecteed.naandalist.com/?autoAddData=on) activated to automatically generate some data.
 
 ## Contributing
+
 Contributions are welcome! If you'd like to contribute to Kinecteed, feel free to submit a pull request.
 
 ## License
+
 This project is licensed under the MIT License.
