@@ -1,81 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="../assets/img/favicon-tailwind.png" />
-  <title>
-    Kinecteed - Evokes a sense of responsibility for contact info to your kin.
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Main Styling -->
-  <link href="../assets/css/argon-dashboard-tailwind.css?v=1.0.1" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/img/favicon-tailwind.png" />
+    <title>
+      Kinecteed - Evokes a sense of responsibility for contact info to your kin.
+    </title>
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Nucleo Icons -->
+    <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Main Styling -->
+    <link
+      href="/assets/css/argon-dashboard-tailwind.css?v=1.0.1"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+  </head>
 
-<body class="m-0 font-sans antialiased font-normal bg-white text-start text-base leading-default text-slate-500">
-  <div class="container sticky top-0 z-sticky">
-    <div class="flex flex-wrap -mx-3">
-      <div class="w-full max-w-full px-3 flex-0">
-        <!-- Navbar -->
+  <body
+    class="m-0 font-sans antialiased font-normal bg-white text-start text-base leading-default text-slate-500"
+  >
+    <div class="container sticky top-0 z-sticky">
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 flex-0">
+          <!-- Navbar -->
+        </div>
       </div>
     </div>
-  </div>
-  <main class="mt-0 transition-all duration-200 ease-in-out">
-    <section>
-      <div class="relative flex items-center min-h-screen p-0 overflow-hidden bg-center bg-cover">
-        <div class="container z-1">
-          <div class="flex flex-wrap -mx-3">
-            <div class="flex flex-col w-full max-w-full px-3 mx-auto">
-              <div
-                class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none lg:py4 rounded-2xl bg-clip-border">
-                <div class="p-6 pb-0 mb-0">
-                  <p class="cursor-pointer" id="goBackLink">
-                    <i class="fas fa-arrow-left text-slate-400" sidenav-close></i>
-                    Go back
-                  </p>
-                  <h4 class="font-bold">Details Contact</h4>
-                </div>
-                <div class="flex-auto p-6">
-                  <div id="details-contact"></div>
+    <main class="mt-0 transition-all duration-200 ease-in-out">
+      <section>
+        <div
+          class="relative flex items-center min-h-screen p-0 overflow-hidden bg-center bg-cover"
+        >
+          <div class="container z-1">
+            <div class="flex flex-wrap -mx-3">
+              <div class="flex flex-col w-full max-w-full px-3 mx-auto">
+                <div
+                  class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none lg:py4 rounded-2xl bg-clip-border"
+                >
+                  <div class="p-6 pb-0 mb-0">
+                    <p class="cursor-pointer" id="goBackLink">
+                      <i
+                        class="fas fa-arrow-left text-slate-400"
+                        sidenav-close
+                      ></i>
+                      Go back
+                    </p>
+                    <h4 class="font-bold">Details Contact</h4>
+                  </div>
+                  <div class="flex-auto p-6">
+                    <div id="details-contact"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
-  <footer class="py-12">
-    <div class="container">
-      <div class="flex flex-wrap -mx-3"></div>
-      <div class="flex flex-wrap -mx-3">
-        <div class="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
-          <p class="mb-0 text-slate-400">
-            Copyright ©
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            Kinecteed
-          </p>
+      </section>
+    </main>
+    <footer class="py-12">
+      <div class="container">
+        <div class="flex flex-wrap -mx-3"></div>
+        <div class="flex flex-wrap -mx-3">
+          <div class="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
+            <p class="mb-0 text-slate-400">
+              Copyright ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              Kinecteed
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-</body>
-<!-- plugin for scrollbar  -->
-<script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
-<!-- main script file  -->
-<script src="../assets/js/argon-dashboard-tailwind.js" async></script>
-<!-- Toastify  -->
-<script src="https://cdn.jsdelivr.net/npm/toastify-js" async></script>
-<!-- customize -->
-<script src="../scripts/detail.js" async></script>
+    </footer>
+  </body>
+  <!-- plugin for scrollbar  -->
+  <script src="/assets/js/plugins/perfect-scrollbar.min.js" async></script>
+  <!-- main script file  -->
+  <script src="/assets/js/argon-dashboard-tailwind.js" async></script>
+  <!-- Toastify  -->
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js" async></script>
+  <!-- customize -->
+  <script src="/scripts/detail.js" async></script>
 </html>

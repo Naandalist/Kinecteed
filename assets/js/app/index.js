@@ -3,13 +3,9 @@ const addContactFormElement = document.getElementById("add-data-form");
 const contactsContainerElement = document.getElementById("contacts-container");
 const searchInput = document.getElementById("search-input");
 
-const tableData = document.querySelector(".flex-none.w-full.max-w-full.px-3");
-const noDataMessageHidden = document.querySelector(
-  ".hidden.w-full.max-w-full.px-3.mb-6.hidden"
-);
-const noDataMessageNotHidden = document.querySelector(
-  ".w-full.max-w-full.px-3.mb-6"
-);
+const contactTable = document.getElementById("contact-table");
+const tableBody = document.getElementById("contacts-content");
+const emptyData = document.getElementById("data-empty");
 
 function loadContactsFromLocalStorage() {
   const storedContactsString = localStorage.getItem("contacts");
@@ -26,6 +22,7 @@ function renderContacts() {
   const keyword = params.get("q");
 
   let storedContacts = loadContactsFromLocalStorage();
+  console.log(storedContacts);
 
   const filterBy = params.get("filterBy");
 
@@ -40,10 +37,10 @@ function renderContacts() {
     storedContacts = storedContacts.filter(filterConditions[filterBy]);
   }
 
-  // its magic, auto add data 😎
-  const autoAddData = params.get("autoAddData");
+  // its seeder, auto generate mock data 😎
+  const seed = params.get("seed");
 
-  if (autoAddData === "on" && storedContacts.length < 15) {
+  if (seed === "true" && storedContacts.length < 15) {
     localStorage.setItem(
       "contacts",
       JSON.stringify([...storedContacts, ...mockDataContact])
@@ -63,13 +60,11 @@ function renderContacts() {
 
   // handling data empty
   if (storedContacts?.length < 1 || !storedContacts) {
-    tableData.classList.add("hidden");
-
-    if (noDataMessageHidden) noDataMessageHidden.classList.remove("hidden");
+    contactTable.classList.add("hidden");
+    emptyData.classList.remove("hidden");
   } else {
-    tableData.classList.remove("hidden");
-    if (noDataMessageNotHidden) noDataMessageNotHidden.classList.add("hidden"); // Make it hidden
-
+    emptyData.classList.add("hidden");
+    contactTable.classList.remove("hidden");
     createTableRows(storedContacts.reverse());
   }
 
@@ -178,7 +173,6 @@ function showAlert(type, message, storedContacts, fullName) {
 }
 
 function createTableRows(data) {
-  const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ""; // This removes all child elements from table
 
   const colorMap = {
