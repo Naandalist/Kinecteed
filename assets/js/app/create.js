@@ -120,7 +120,7 @@ function handleCheckbox(event) {
   const clickedCheckbox = event.target;
   if (
     clickedCheckbox.tagName !== "INPUT" ||
-    !clickedCheckbox.type === "checkbox"
+    clickedCheckbox.type !== "checkbox"
   )
     return;
 
