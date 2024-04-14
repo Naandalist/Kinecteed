@@ -1,4 +1,3 @@
-const searchInputElement = document.getElementById("search-input");
 const addContactFormElement = document.getElementById("add-data-form");
 const contactsContainerElement = document.getElementById("contacts-container");
 const searchInput = document.getElementById("search-input");
@@ -49,7 +48,7 @@ function renderContacts() {
   }
 
   if (keyword) {
-    searchInputElement.value = keyword;
+    searchInput.value = keyword;
 
     const filteredContacts = storedContacts.filter((contact) =>
       contact.fullName.toLowerCase().includes(keyword.toLowerCase())
