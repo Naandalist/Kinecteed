@@ -11,7 +11,6 @@ Kinecteed is a lightweight web app developed using vanilla JavaScript and Argon 
 - [x] **Search Functionality:** Implement a search bar to quickly find contacts by name.
 - [x] **Categories or Groups:** User can categorize contacts into tags.
 - [x] **Responsive Design:** App is accessible and usable on various devices.
-- [ ] Any requests?
 
 ## Usage
 
